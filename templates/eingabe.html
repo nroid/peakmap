@@ -1,0 +1,68 @@
+{% include "header.html" %}
+
+<div class="row">
+    <div class="col">
+    <input type="text" class="form-control" placeholder="Gipfelname" aria-label="Gipfelname">
+  </div>
+</div>
+<div class="row">
+    <div class="col">
+    <input type="number" class="form-control" placeholder="Koordinate Länge" aria-label="Koordinate Länge">
+  </div>
+    <div class="col">
+    <input type="number" class="form-control" placeholder="Koordinate Breite" aria-label="Koordinate Breite">
+  </div>
+</div>
+    <select class="form-select" aria-label="Kanton">
+  <option selected>Kanton auswählen</option>
+  <option value="1">AG</option>
+  <option value="2">AI</option>
+  <option value="3">AR</option>
+    <option value="4">BE</option>
+    <option value="5">BL</option>
+    <option value="6">BS</option>
+    <option value="7">FR</option>
+    <option value="8">GE</option>
+    <option value="9">GL</option>
+    <option value="10">GR</option>
+    <option value="11">JU</option>
+    <option value="12">LU</option>
+    <option value="13">NE</option>
+    <option value="14">NW</option>
+    <option value="15">OW</option>
+    <option value="16">SG</option>
+    <option value="17">SH</option>
+    <option value="18">SO</option>
+    <option value="19">SZ</option>
+    <option value="20">TG</option>
+    <option value="21">TI</option>
+    <option value="22">UR</option>
+    <option value="23">VD</option>
+    <option value="24">VS</option>
+    <option value="25">ZG</option>
+    <option value="26">ZH</option>
+</select>
+
+<div clas="row">
+    <div class="col">
+    <input type="date" class="form-control" placeholder="Datum" aria-label="Datum">
+  </div>
+    <div class="col">
+    <input type="time" class="form-control" placeholder="Dauer" aria-label="Dauer">
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <input type="number" class="form-control" placeholder="Distanz" aria-label="Distanz">
+  </div>
+    <div class="col">
+    <input type="number" class="form-control" placeholder="Höhenmeter" aria-label="Höhenmeter">
+  </div>
+</div>
+<select class="form-select" aria-label="Sportart">
+  <option selected>Sportart auswählen</option>
+  <option value="1">Bike</option>
+  <option value="2">Skitour</option>
+  <option value="3">Wanderung</option>
+</select>
+{% include "footer.html" %}
