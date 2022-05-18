@@ -4,9 +4,11 @@ from flask import url_for
 from flask import request
 import random
 from datetime import datetime
+import daten
 
 
-app = Flask(__name__)
+app = Flask("Daten")
+
 
 @app.route("/")
 def start():
@@ -16,9 +18,13 @@ def start():
 def auswertung():
     return render_template("auswertung.html")
 
-@app.route("/eingabe")
+@app.route("/eingabe", methods=["get", "post"])
 def eingabe():
-    return render_template("eingabe.html")
+    if request.method.lower() == "get":
+        return render_template('eingabe.html')
+    if request.method.lower() == "post":
+        gipfel = request.form['gipfelname']
+        return gipfel
 
 @app.route("/bearbeitung")
 def bearbeitung():

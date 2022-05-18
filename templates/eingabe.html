@@ -1,16 +1,17 @@
 {% include "header.html" %}
 
+<form method="POST">
 <div class="row">
     <div class="col">
-    <input type="text" class="form-control" placeholder="Gipfelname" aria-label="Gipfelname">
+    <input type="text" name="gipfelname" class="form-control" placeholder="Gipfelname" aria-label="Gipfelname">
   </div>
 </div>
 <div class="row">
     <div class="col">
-    <input type="number" class="form-control" placeholder="Koordinate Länge" aria-label="Koordinate Länge">
+    <input type="number" name="koordinatelaenge" class="form-control" placeholder="Koordinate Länge" aria-label="Koordinate Länge">
   </div>
     <div class="col">
-    <input type="number" class="form-control" placeholder="Koordinate Breite" aria-label="Koordinate Breite">
+    <input type="number" name="koordinatebreite" class="form-control" placeholder="Koordinate Breite" aria-label="Koordinate Breite">
   </div>
 </div>
     <select class="form-select" aria-label="Kanton">
@@ -65,4 +66,6 @@
   <option value="2">Skitour</option>
   <option value="3">Wanderung</option>
 </select>
+  <button type="submit">Senden</button>
+</form>
 {% include "footer.html" %}
