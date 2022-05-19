@@ -7,7 +7,7 @@ from datetime import datetime
 import daten
 
 
-app = Flask("Daten")
+app = Flask("templates")
 
 
 @app.route("/")
@@ -18,13 +18,14 @@ def start():
 def auswertung():
     return render_template("auswertung.html")
 
-@app.route("/eingabe", methods=["get", "post"])
+@app.route("/eingabe/", methods=["GET", "POST"])
 def eingabe():
-    if request.method.lower() == "get":
-        return render_template('eingabe.html')
-    if request.method.lower() == "post":
+    if request.method == "POST":
         gipfel = request.form['gipfelname']
-        return gipfel
+
+        return render_template("test.html", peak=gipfel)
+
+    return render_template("eingabe.html")
 
 @app.route("/bearbeitung")
 def bearbeitung():
