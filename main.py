@@ -26,7 +26,12 @@ def eingabe():
         koordinatelaenge = request.form.get('koordinatelaenge')
         koordinatebreite = request.form.get('koordinatebreite')
         kanton = request.form.get('kanton')
-        daten.speichern("gipfel.json", id, {"Gipfel" : gipfel, "KoordinateLaenge" : koordinatelaenge, "KoordinateBreite" : koordinatebreite, "Kanton" : kanton})
+        datum = request.form.get('datum')
+        dauer = request.form.get('dauer')
+        distanz = request.form.get('distanz')
+        hoehenmeter = request.form.get('hoehenmeter')
+        sportart = request.form.get('sportart')
+        daten.speichern("gipfel.json", id, {"Gipfel" : gipfel, "KoordinateLaenge" : koordinatelaenge, "KoordinateBreite" : koordinatebreite, "Kanton" : kanton, "Datum" : datum, "Dauer" : dauer, "Distanz" : distanz, "Hoehenmeter" : hoehenmeter, "Sportart" : sportart})
         return f"Zum Zeitpunkt {id} wurde der Peak {gipfel} hinzugefügt."
 
     return render_template("eingabe.html")
