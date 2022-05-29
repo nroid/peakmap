@@ -21,9 +21,13 @@ def auswertung():
 @app.route("/eingabe/", methods=["GET", "POST"])
 def eingabe():
     if request.method == "POST":
-        gipfel = request.form['gipfelname']
-
-        return render_template("test.html", peak=gipfel)
+        id = datetime.now()
+        gipfel = request.form.get('gipfelname')
+        koordinatelaenge = request.form.get('koordinatelaenge')
+        koordinatebreite = request.form.get('koordinatebreite')
+        kanton = request.form.get('kanton')
+        daten.speichern("gipfel.json", id, {"Gipfel" : gipfel, "KoordinateLaenge" : koordinatelaenge, "KoordinateBreite" : koordinatebreite, "Kanton" : kanton})
+        return f"Zum Zeitpunkt {id} wurde der Peak {gipfel} hinzugefügt."
 
     return render_template("eingabe.html")
 
