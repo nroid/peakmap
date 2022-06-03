@@ -16,9 +16,18 @@ def start():
 
 @app.route("/auswertung")
 def auswertung():
-    return render_template("auswertung.html")
+    gipfelbuch = daten.gipfel_laden()
 
-@app.route("/eingabe/", methods=["GET", "POST"])
+    gipfelbuch_liste = ""
+    for key, value in gipfelbuch.items():
+        zeile = str(key) + ": " + str(value) + "<br>"
+        gipfelbuch_liste += zeile
+
+    return gipfelbuch_liste
+
+    #return render_template("auswertung.html")
+
+@app.route("/eingabe", methods=["GET", "POST"])
 def eingabe():
     if request.method == "POST":
         id = datetime.now()
