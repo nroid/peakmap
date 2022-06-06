@@ -1,8 +1,22 @@
 {% include "header.html" %}
 
- <select class="form-select" aria-label="Gipfelname">
-  <option selected>Gipfel auswählen</option>
-  <option value="1">AG</option>
- </select>
+<table class="table">
+  <thead>
+    <tr>
+        {% for beschriftung in titel %}
+        <th scope="col">{{ beschriftung }}</th>
+        {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for key, value in inhalt %}
+    <tr>
+        {% for wert in value.values() %}
+      <td>{{ wert }}</td>
+        {% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 {% include "footer.html" %}

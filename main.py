@@ -17,15 +17,10 @@ def start():
 @app.route("/auswertung")
 def auswertung():
     gipfelbuch = daten.gipfel_laden()
-
-    gipfelbuch_liste = ""
     for key, value in gipfelbuch.items():
-        zeile = str(key) + ": " + str(value) + "<br>"
-        gipfelbuch_liste += zeile
-
-    return gipfelbuch_liste
-
-    #return render_template("auswertung.html")
+        inhalt = gipfelbuch.items()
+        titel = value.keys()
+        return render_template("auswertung.html", titel=titel, inhalt=inhalt)
 
 @app.route("/eingabe", methods=["GET", "POST"])
 def eingabe():
