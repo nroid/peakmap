@@ -19,4 +19,23 @@
   </tbody>
 </table>
 
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">Dauer</th>
+        <th scope="col">Distanz</th>
+        <th scope="col">Hoehenmeter</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for key, value in inhalt %}
+    <tr>
+      <td>{{ value["Dauer"] }}</td>
+      <td>{{ value["Distanz"] }}</td>
+      <td>{{ value["Hoehenmeter"] }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
 {% include "footer.html" %}

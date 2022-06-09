@@ -9,7 +9,6 @@ import daten
 
 app = Flask("templates")
 
-
 @app.route("/")
 def start():
     return render_template("auswertung.html")
@@ -18,8 +17,8 @@ def start():
 def auswertung():
     gipfelbuch = daten.gipfel_laden()
     for key, value in gipfelbuch.items():
-        inhalt = gipfelbuch.items()
         titel = value.keys()
+        inhalt = gipfelbuch.items()
         return render_template("auswertung.html", titel=titel, inhalt=inhalt)
 
 @app.route("/eingabe", methods=["GET", "POST"])
@@ -42,6 +41,7 @@ def eingabe():
 
 @app.route("/bearbeitung")
 def bearbeitung():
+
     return render_template("bearbeitung.html")
 
 
