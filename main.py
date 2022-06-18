@@ -4,22 +4,35 @@ from flask import url_for
 from flask import request
 import random
 from datetime import datetime
+import plotly.graph_objects as go
 import daten
+import berechnung
 
 
 app = Flask("templates")
 
 @app.route("/")
 def start():
-    return render_template("auswertung.html")
+    gipfelbuch = daten.gipfel_laden()
+    summedauer = berechnung.summedauer()
+    summedistanz = berechnung.summedistanz()
+    summehoehenmeter = berechnung.summehoehenmeter()
+    for key, value in gipfelbuch.items():
+        titel = value.keys()
+        inhalt = gipfelbuch.items()
+        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter)
 
-@app.route("/auswertung")
+
+@app.route("/auswertung", methods=["GET", "POST"])
 def auswertung():
+    if request.method == "POST":
+        inhalt2 = berechnung.anzeigeauswertung()
     gipfelbuch = daten.gipfel_laden()
     for key, value in gipfelbuch.items():
         titel = value.keys()
         inhalt = gipfelbuch.items()
-        return render_template("auswertung.html", titel=titel, inhalt=inhalt)
+        print(inhalt)
+        return render_template("auswertung.html", titel=titel, inhalt=inhalt, inhalt2=inhalt2)
 
 @app.route("/eingabe", methods=["GET", "POST"])
 def eingabe():
@@ -41,8 +54,8 @@ def eingabe():
 
 @app.route("/bearbeitung")
 def bearbeitung():
-
-    return render_template("bearbeitung.html")
+    fig = berechnung.anzahlkanton()
+    return render_template("bearbeitung.html", fig=fig)
 
 
 if __name__ == "__main__":

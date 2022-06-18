@@ -1,5 +1,43 @@
 {% include "header.html" %}
-
+<form method="POST">
+<select class="form-select" name="kanton" aria-label="Kanton">
+  <option selected>Kanton auswählen</option>
+  <option value="AG">AG</option>
+  <option value="AI">AI</option>
+  <option value="AR">AR</option>
+    <option value="BE">BE</option>
+    <option value="BL">BL</option>
+    <option value="BS">BS</option>
+    <option value="FR">FR</option>
+    <option value="GE">GE</option>
+    <option value="GL">GL</option>
+    <option value="GR">GR</option>
+    <option value="JU">JU</option>
+    <option value="LU">LU</option>
+    <option value="NE">NE</option>
+    <option value="NW">NW</option>
+    <option value="OW">OW</option>
+    <option value="SG">SG</option>
+    <option value="SH">SH</option>
+    <option value="SO">SO</option>
+    <option value="SZ">SZ</option>
+    <option value="TG">TG</option>
+    <option value="TI">TI</option>
+    <option value="UR">UR</option>
+    <option value="VD">VD</option>
+    <option value="VS">VS</option>
+    <option value="ZG">ZG</option>
+    <option value="ZH">ZH</option>
+</select>
+<select class="form-select" name="sportart" aria-label="Sportart">
+  <option selected>Sportart auswählen</option>
+  <option value="Bike">Bike</option>
+  <option value="Skitour">Skitour</option>
+  <option value="Wanderung">Wanderung</option>
+</select>
+  <button type="submit">Auswertung</button>
+</form>
+<br>
 <table class="table">
   <thead>
     <tr>
@@ -9,14 +47,25 @@
     </tr>
   </thead>
   <tbody>
-  {% for key, value in inhalt %}
+  {% for key, value in inhalt2 %}
     <tr>
         {% for wert in value.values() %}
-      <td>{{ wert }}</td>
+      <td>{{ value }}</td>
         {% endfor %}
     </tr>
   {% endfor %}
-  </tbody>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>{{ summedauer }}</b></td>
+        <td><b>{{ summedistanz }}</b></td>
+        <td><b>{{ summehoehenmeter }}</b></td>
+        <td></td>
+    </tr>
+  </tbody>-->
 </table>
 
 <table class="table">
@@ -35,6 +84,11 @@
       <td>{{ value["Hoehenmeter"] }}</td>
     </tr>
   {% endfor %}
+  <tr>
+      <td><b>{{ summedauer }}</b></td>
+      <td><b>{{ summedistanz }}</b></td>
+      <td><b>{{ summehoehenmeter }}</b></td>
+  </tr>
   </tbody>
 </table>
 

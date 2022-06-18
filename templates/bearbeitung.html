@@ -1,21 +1,34 @@
 {% include "header.html" %}
 
+<!--{{ fig|safe }}-->
+
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Dauer</th>
-      <th scope="col">Distanz</th>
-      <th scope="col">Hoehenmeter</th>
+        {% for beschriftung in nemro %}
+        <th scope="col">{{ beschriftung }}</th>
+        {% endfor %}
     </tr>
   </thead>
   <tbody>
-  {% for key, value in inhalt %}
+  {% for key, value in kubli %}
     <tr>
-      <td>{{ value["Dauer"] }}</td>
-      <td>{{ value["Distanz"] }}</td>
-      <td>{{ value["Hoehenmeter"] }}</td>
+        {% for wert in value.values() %}
+      <td>{{ wert }}</td>
+        {% endfor %}
     </tr>
   {% endfor %}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>{{ summedauer }}</b></td>
+        <td><b>{{ summedistanz }}</b></td>
+        <td><b>{{ summehoehenmeter }}</b></td>
+        <td></td>
+    </tr>
   </tbody>
 </table>
 
