@@ -47,10 +47,10 @@
     </tr>
   </thead>
   <tbody>
-  {% for key, value in inhalt2 %}
+  {% for key, value in inhalt %}
     <tr>
         {% for wert in value.values() %}
-      <td>{{ value }}</td>
+      <td>{{ wert }}</td>
         {% endfor %}
     </tr>
   {% endfor %}
@@ -65,31 +65,10 @@
         <td><b>{{ summehoehenmeter }}</b></td>
         <td></td>
     </tr>
-  </tbody>-->
-</table>
-
-<table class="table">
-  <thead>
-    <tr>
-        <th scope="col">Dauer</th>
-        <th scope="col">Distanz</th>
-        <th scope="col">Hoehenmeter</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for key, value in inhalt %}
-    <tr>
-      <td>{{ value["Dauer"] }}</td>
-      <td>{{ value["Distanz"] }}</td>
-      <td>{{ value["Hoehenmeter"] }}</td>
-    </tr>
-  {% endfor %}
-  <tr>
-      <td><b>{{ summedauer }}</b></td>
-      <td><b>{{ summedistanz }}</b></td>
-      <td><b>{{ summehoehenmeter }}</b></td>
-  </tr>
   </tbody>
 </table>
+
+{{ viz_div|safe }}
+{{ fig|safe }}
 
 {% include "footer.html" %}

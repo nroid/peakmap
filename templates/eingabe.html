@@ -7,10 +7,10 @@
 </div>
 <div class="row">
     <div class="col">
-    <input type="number" name="koordinatelaenge" class="form-control" placeholder="Koordinate Länge" aria-label="Koordinate Länge">
+    <input type="number" name="koordinatelaenge" class="form-control" step="any" placeholder="Koordinate Länge" aria-label="Koordinate Länge">
   </div>
     <div class="col">
-    <input type="number" name="koordinatebreite" class="form-control" placeholder="Koordinate Breite" aria-label="Koordinate Breite">
+    <input type="number" name="koordinatebreite" class="form-control" step="any" placeholder="Koordinate Breite" aria-label="Koordinate Breite">
   </div>
 </div>
     <select class="form-select" name="kanton" aria-label="Kanton">
@@ -48,15 +48,15 @@
     <input type="date" name="datum" class="form-control" placeholder="Datum" aria-label="Datum">
   </div>
     <div class="col">
-    <input type="number" name="dauer" class="form-control" placeholder="Dauer" aria-label="Dauer">
+    <input type="number" name="dauer" class="form-control" step="any" placeholder="Dauer" aria-label="Dauer">
   </div>
 </div>
 <div class="row">
   <div class="col">
-    <input type="number" name="distanz" class="form-control" placeholder="Distanz" aria-label="Distanz">
+    <input type="number" name="distanz" class="form-control" step="any" placeholder="Distanz" aria-label="Distanz">
   </div>
     <div class="col">
-    <input type="number" name="hoehenmeter" class="form-control" placeholder="Höhenmeter" aria-label="Höhenmeter">
+    <input type="number" name="hoehenmeter" class="form-control" step="any" placeholder="Höhenmeter" aria-label="Höhenmeter">
   </div>
 </div>
 <select class="form-select" name="sportart" aria-label="Sportart">
@@ -67,4 +67,5 @@
 </select>
   <button type="submit">Senden</button>
 </form>
+<p> {{ ausgabe }} </p>
 {% include "footer.html" %}

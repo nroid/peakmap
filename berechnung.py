@@ -4,6 +4,8 @@ from flask import request
 import json
 import daten
 import main
+import plotly.express as px
+from plotly.offline import plot
 
 def anzahlkanton():
     gipfelbuch = daten.gipfel_laden()
@@ -117,11 +119,12 @@ def anzahlkanton():
     kantonsumme += zh
 
     kantone = ['AG', 'AI', 'AR', 'BE', 'BL', 'BS', 'FR', 'GE', 'GL', 'GR', 'JU', 'LU', 'NE', 'NW', 'OW', 'SG', 'SH', 'SO', 'SZ', 'TG', 'TI', 'UR', 'VD', 'VS', 'ZG', 'ZH']
-    values = [ag, ai, ar, be, bl, bs, fr, ge, gl, gr, ju, lu, ne, nw, ow, sg, sh, so, sz, tg, ti, ur, vd, bs, zg, zh]
+    values = [ag, ai, ar, be, bl, bs, fr, ge, gl, gr, ju, lu, ne, nw, ow, sg, sh, so, sz, tg, ti, ur, vd, vs, zg, zh]
 
-    fig = go.Figure(data=[go.Pie(labels=kantone, values=values, insidetextorientation='radial')])
-    return fig
-    #fig.show()
+    return kantone, values
+
+    # fig = go.Figure(data=[go.Pie(labels=kantone, values=values, insidetextorientation='radial')])
+    # fig.show
 
 def summedauer():
     gipfelbuch = daten.gipfel_laden()
@@ -144,19 +147,31 @@ def summehoehenmeter():
         summehoehenmeter += int(value["Hoehenmeter"])
     return summehoehenmeter
 
-def anzeigeauswertung():
-    kantonsauswahl = request.form.get('kanton')
+def get_data():
     gipfelbuch = daten.gipfel_laden()
-    inhalt2 = "test"
-    kubli = "test"
-    if kantonsauswahl == "AG":
-        for key, value in gipfelbuch.items():
-            if value["Kanton"] == "AG":
-                inhalt2 = value
-                print(value)
-            #     nemro = value.keys()
-            #     kubli = gipfelbuch.items()
-                return inhalt2
+    summedistanz = 0
+    for key, value in gipfelbuch.items():
+        summedistanz += int(value["Distanz"])
+
+    jahr = [2015, 2016, 2017, 2018, 2019, 2021]
+    loc = [1500, 3500, 12000, 9000, 10000, 4000]
+    return jahr, loc
+
+
+def viz():
+    kantone, values = anzahlkanton()
+    fig = px.bar(x=kantone, y=values)
+    div = plot(fig, output_type="div")
+    return div
+
+# def anzeigeauswertung():
+#     kantonsauswahl = request.form.get('kanton')
+#     gipfelbuch = daten.gipfel_laden()
+#     if kantonsauswahl == "AG":
+#         for key, value in gipfelbuch.items():
+#             if value["Kanton"] == "AG":
+#                 print(value)
+#             return value
 
     # elif kantonsauswahl == "AI":
     #

@@ -25,14 +25,16 @@ def start():
 
 @app.route("/auswertung", methods=["GET", "POST"])
 def auswertung():
-    if request.method == "POST":
-        inhalt2 = berechnung.anzeigeauswertung()
     gipfelbuch = daten.gipfel_laden()
+    summedauer = berechnung.summedauer()
+    summedistanz = berechnung.summedistanz()
+    summehoehenmeter = berechnung.summehoehenmeter()
+    div = berechnung.viz()
+    berechnung.anzahlkanton()
     for key, value in gipfelbuch.items():
         titel = value.keys()
         inhalt = gipfelbuch.items()
-        print(inhalt)
-        return render_template("auswertung.html", titel=titel, inhalt=inhalt, inhalt2=inhalt2)
+        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter, viz_div=div)
 
 @app.route("/eingabe", methods=["GET", "POST"])
 def eingabe():
@@ -48,7 +50,8 @@ def eingabe():
         hoehenmeter = request.form.get('hoehenmeter')
         sportart = request.form.get('sportart')
         daten.speichern("gipfel.json", id, {"Gipfel" : gipfel, "KoordinateLaenge" : koordinatelaenge, "KoordinateBreite" : koordinatebreite, "Kanton" : kanton, "Datum" : datum, "Dauer" : dauer, "Distanz" : distanz, "Hoehenmeter" : hoehenmeter, "Sportart" : sportart})
-        return f"Zum Zeitpunkt {id} wurde der Peak {gipfel} hinzugefügt."
+        ausgabe = f"Zum Zeitpunkt {id} wurde der Peak {gipfel} hinzugefügt."
+        return render_template("eingabe.html", ausgabe=ausgabe)
 
     return render_template("eingabe.html")
 
