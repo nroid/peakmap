@@ -1,4 +1,35 @@
 {% include "header.html" %}
+<!-- Tabelle für die Datenausgabe, wird durch for-Schleife mit Inhalt gefüllt -->
+<table class="table">
+  <thead>
+    <tr>
+        {% for beschriftung in titel %}
+        <th scope="col">{{ beschriftung }}</th>
+        {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for key, value in inhalt %}
+    <tr>
+        {% for wert in value.values() %}
+      <td>{{ wert }}</td>
+        {% endfor %}
+    </tr>
+  {% endfor %}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>{{ summedauer }}</b></td>
+        <td><b>{{ summedistanz }}</b></td>
+        <td><b>{{ summehoehenmeter }}</b></td>
+        <td></td>
+    </tr>
+  </tbody>
+</table>
+
 <form method="POST">
 <select class="form-select" name="kanton" aria-label="Kanton">
   <option selected>Kanton auswählen</option>
@@ -37,38 +68,8 @@
 </select>
   <button type="submit">Auswertung</button>
 </form>
-<br>
-<table class="table">
-  <thead>
-    <tr>
-        {% for beschriftung in titel %}
-        <th scope="col">{{ beschriftung }}</th>
-        {% endfor %}
-    </tr>
-  </thead>
-  <tbody>
-  {% for key, value in inhalt %}
-    <tr>
-        {% for wert in value.values() %}
-      <td>{{ wert }}</td>
-        {% endfor %}
-    </tr>
-  {% endfor %}
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><b>{{ summedauer }}</b></td>
-        <td><b>{{ summedistanz }}</b></td>
-        <td><b>{{ summehoehenmeter }}</b></td>
-        <td></td>
-    </tr>
-  </tbody>
-</table>
 
+<!-- Darstellung des Balkendiagramms Anzahl Touren in Kanton -->
 {{ viz_div|safe }}
-{{ fig|safe }}
 
 {% include "footer.html" %}

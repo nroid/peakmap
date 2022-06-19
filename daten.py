@@ -1,7 +1,7 @@
 from datetime import datetime
 import json
 
-
+# Speichert die mitgelieferten Daten in der mitgelieferten Datei ab
 def speichern(datei, key, value):
     try:
         with open(datei) as open_file:
@@ -11,12 +11,10 @@ def speichern(datei, key, value):
 
     datei_inhalt[str(key)] = value
 
-    # print(datei_inhalt)
-
     with open(datei, "w") as open_file:
         json.dump(datei_inhalt, open_file, indent=4)
 
-
+# Lädt Dateiinhalt und gibt Inhalt zurück
 def gipfel_laden():
     datei_name = "gipfel.json"
 

@@ -11,18 +11,38 @@ import berechnung
 
 app = Flask("templates")
 
-@app.route("/")
+"""
+Daten werden aus gipfel.json geladen
+Summe der Dauer wird berechnet
+Summe der Distanz wird berechnet
+Summe der Höhenmeter wird berechnet
+Balkendiagramm wird erstellt
+Titel wird aus Daten extrahiert
+Inhalt Gipfelbuch wird extrahiert
+Variablen werden an auswertung.html übergeben
+"""
+@app.route("/", methods=["GET", "POST"])
 def start():
     gipfelbuch = daten.gipfel_laden()
     summedauer = berechnung.summedauer()
     summedistanz = berechnung.summedistanz()
     summehoehenmeter = berechnung.summehoehenmeter()
+    div = berechnung.viz()
     for key, value in gipfelbuch.items():
         titel = value.keys()
         inhalt = gipfelbuch.items()
-        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter)
+        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter, viz_div=div)
 
-
+"""
+Daten werden aus gipfel.json geladen
+Summe der Dauer wird berechnet
+Summe der Distanz wird berechnet
+Summe der Höhenmeter wird berechnet
+Balkendiagramm wird erstellt
+Titel wird aus Daten extrahiert
+Inhalt Gipfelbuch wird extrahiert
+Variablen werden an auswertung.html übergeben
+"""
 @app.route("/auswertung", methods=["GET", "POST"])
 def auswertung():
     gipfelbuch = daten.gipfel_laden()
@@ -30,12 +50,16 @@ def auswertung():
     summedistanz = berechnung.summedistanz()
     summehoehenmeter = berechnung.summehoehenmeter()
     div = berechnung.viz()
-    berechnung.anzahlkanton()
     for key, value in gipfelbuch.items():
         titel = value.keys()
         inhalt = gipfelbuch.items()
         return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter, viz_div=div)
 
+"""
+Mit Methods POST, werden Daten aus Eingabeformular in Variablen geschrieben.
+Diese werden an Funktion Daten speichern übergeben um in gipfel.json abgespeichert zu werden.
+Rückmeldung dass Daten zu Datenbank hinzugefügt wurden.
+"""
 @app.route("/eingabe", methods=["GET", "POST"])
 def eingabe():
     if request.method == "POST":
@@ -55,10 +79,12 @@ def eingabe():
 
     return render_template("eingabe.html")
 
+"""
+Bearbeitung ist noch nicht fertiggestellt!
+"""
 @app.route("/bearbeitung")
 def bearbeitung():
-    fig = berechnung.anzahlkanton()
-    return render_template("bearbeitung.html", fig=fig)
+    return render_template("bearbeitung.html")
 
 
 if __name__ == "__main__":

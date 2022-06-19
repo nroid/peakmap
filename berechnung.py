@@ -7,6 +7,10 @@ import main
 import plotly.express as px
 from plotly.offline import plot
 
+"""
+Funktion berechnet aus den Daten von gipfel.json die Anzahl Touren pro Kanton und gibt die Werte für
+die Darstellung im Balkendiagramm zurück
+"""
 def anzahlkanton():
     gipfelbuch = daten.gipfel_laden()
     ag = 0
@@ -35,7 +39,6 @@ def anzahlkanton():
     vs = 0
     zg = 0
     zh = 0
-    kantonsumme = 0
 
     for key, value in gipfelbuch.items():
         if value["Kanton"] == "AG":
@@ -91,41 +94,12 @@ def anzahlkanton():
         elif value["Kanton"] == "ZH":
             zh += 1
 
-    kantonsumme += ag
-    kantonsumme += ai
-    kantonsumme += ar
-    kantonsumme += be
-    kantonsumme += bl
-    kantonsumme += bs
-    kantonsumme += fr
-    kantonsumme += ge
-    kantonsumme += gl
-    kantonsumme += gr
-    kantonsumme += ju
-    kantonsumme += lu
-    kantonsumme += ne
-    kantonsumme += nw
-    kantonsumme += ow
-    kantonsumme += sg
-    kantonsumme += sh
-    kantonsumme += so
-    kantonsumme += sz
-    kantonsumme += tg
-    kantonsumme += ti
-    kantonsumme += ur
-    kantonsumme += vd
-    kantonsumme += vs
-    kantonsumme += zg
-    kantonsumme += zh
-
     kantone = ['AG', 'AI', 'AR', 'BE', 'BL', 'BS', 'FR', 'GE', 'GL', 'GR', 'JU', 'LU', 'NE', 'NW', 'OW', 'SG', 'SH', 'SO', 'SZ', 'TG', 'TI', 'UR', 'VD', 'VS', 'ZG', 'ZH']
     values = [ag, ai, ar, be, bl, bs, fr, ge, gl, gr, ju, lu, ne, nw, ow, sg, sh, so, sz, tg, ti, ur, vd, vs, zg, zh]
 
     return kantone, values
 
-    # fig = go.Figure(data=[go.Pie(labels=kantone, values=values, insidetextorientation='radial')])
-    # fig.show
-
+# Berechnung der Summe der Dauer aller gipfel.json Einträge
 def summedauer():
     gipfelbuch = daten.gipfel_laden()
     summedauer = 0.0
@@ -133,6 +107,7 @@ def summedauer():
         summedauer += float(value["Dauer"])
     return summedauer
 
+# Berechnung der Summe der Distanzen aller gipfel.json Einträge
 def summedistanz():
     gipfelbuch = daten.gipfel_laden()
     summedistanz = 0
@@ -140,6 +115,7 @@ def summedistanz():
         summedistanz += int(value["Distanz"])
     return summedistanz
 
+# Berechnung der Summe der Höhenmeter aller gipfel.json Einträge
 def summehoehenmeter():
     gipfelbuch = daten.gipfel_laden()
     summehoehenmeter = 0
@@ -147,69 +123,9 @@ def summehoehenmeter():
         summehoehenmeter += int(value["Hoehenmeter"])
     return summehoehenmeter
 
-def get_data():
-    gipfelbuch = daten.gipfel_laden()
-    summedistanz = 0
-    for key, value in gipfelbuch.items():
-        summedistanz += int(value["Distanz"])
-
-    jahr = [2015, 2016, 2017, 2018, 2019, 2021]
-    loc = [1500, 3500, 12000, 9000, 10000, 4000]
-    return jahr, loc
-
-
+# Erstellung des Balkendiagramms der Anzahl Routen pro Kanton
 def viz():
     kantone, values = anzahlkanton()
     fig = px.bar(x=kantone, y=values)
     div = plot(fig, output_type="div")
     return div
-
-# def anzeigeauswertung():
-#     kantonsauswahl = request.form.get('kanton')
-#     gipfelbuch = daten.gipfel_laden()
-#     if kantonsauswahl == "AG":
-#         for key, value in gipfelbuch.items():
-#             if value["Kanton"] == "AG":
-#                 print(value)
-#             return value
-
-    # elif kantonsauswahl == "AI":
-    #
-    # elif kantonsauswahl == "AR":
-    # elif kantonsauswahl == "BE":
-    # elif kantonsauswahl == "BL":
-    # elif kantonsauswahl == "BS":
-    # elif kantonsauswahl == "AI":
-    # elif kantonsauswahl == "FR":
-    # elif kantonsauswahl == "GE":
-    # elif kantonsauswahl == "GL":
-    # elif kantonsauswahl == "GR":
-    # elif kantonsauswahl == "JU":
-    # elif kantonsauswahl == "LU":
-    # elif kantonsauswahl == "NE":
-    # elif kantonsauswahl == "NW":
-    # elif kantonsauswahl == "OW":
-    # elif kantonsauswahl == "SG":
-    # elif kantonsauswahl == "SH":
-    #
-    # elif kantonsauswahl == "SO":
-    #
-    # elif kantonsauswahl == "SZ":
-    #
-    # elif kantonsauswahl == "TG":
-    #
-    # elif kantonsauswahl == "TI":
-    #
-    # elif kantonsauswahl == "UR":
-    #
-    # elif kantonsauswahl == "VD":
-    #
-    # elif kantonsauswahl == "VS":
-    #
-    # elif kantonsauswahl == "ZG":
-    #
-    # elif kantonsauswahl == "ZH":
-    #
-    # else
-
-
