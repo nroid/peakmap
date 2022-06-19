@@ -15,7 +15,7 @@
 - Auf der Eingabeseite können Daten erfasst werden, welche dann in der json-Datei hinzugefügt werden.
 
 **Architektur**
-![](/Users/nemro/Library/Mobile Documents/com~apple~CloudDocs/Digital Business Management/Programmierung_2/PeakMap/static/PeakMap_Ablaufdiagramm.png)
+`<img src="../static/PeakMap_Ablaufdiagramm.png" alt="Peak Map" style="height:400px;">`
 
 **Ungelöste/unbearbeitete Probleme**
  - Die Bearbeitung der bereits erfassten Daten ist noch nicht umgesetzt.
