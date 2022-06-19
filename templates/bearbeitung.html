@@ -1,7 +1,83 @@
 {% include "header.html" %}
 
-<!--{{ fig|safe }}-->
+<form method="POST">
+<select class="form-select" name="tour" aria-label="Sportart">
+  <option selected>Tour auswählen</option>
+  {% for eintrag in inhalt %}
+  <option value="Tour">{{ eintrag }}</option>
+  {% endfor %}
+</select>
+  <button type="submit">Senden</button>
+</form>
+<br>
+{{ tour }}
+<form method="POST">
+<div class="row">
+    <div class="col">
+    <input type="text" name="gipfelname" class="form-control" placeholder="Gipfelname" aria-label="Gipfelname">
+  </div>
+</div>
+<div class="row">
+    <div class="col">
+    <input type="number" name="koordinatelaenge" class="form-control" step="any" placeholder="Koordinate Länge" aria-label="Koordinate Länge">
+  </div>
+    <div class="col">
+    <input type="number" name="koordinatebreite" class="form-control" step="any" placeholder="Koordinate Breite" aria-label="Koordinate Breite">
+  </div>
+</div>
+    <select class="form-select" name="kanton" aria-label="Kanton">
+  <option selected>Kanton auswählen</option>
+  <option value="AG">AG</option>
+  <option value="AI">AI</option>
+  <option value="AR">AR</option>
+    <option value="BE">BE</option>
+    <option value="BL">BL</option>
+    <option value="BS">BS</option>
+    <option value="FR">FR</option>
+    <option value="GE">GE</option>
+    <option value="GL">GL</option>
+    <option value="GR">GR</option>
+    <option value="JU">JU</option>
+    <option value="LU">LU</option>
+    <option value="NE">NE</option>
+    <option value="NW">NW</option>
+    <option value="OW">OW</option>
+    <option value="SG">SG</option>
+    <option value="SH">SH</option>
+    <option value="SO">SO</option>
+    <option value="SZ">SZ</option>
+    <option value="TG">TG</option>
+    <option value="TI">TI</option>
+    <option value="UR">UR</option>
+    <option value="VD">VD</option>
+    <option value="VS">VS</option>
+    <option value="ZG">ZG</option>
+    <option value="ZH">ZH</option>
+</select>
 
-<p>Coming soon...</p>
+<div clas="row">
+    <div class="col">
+    <input type="date" name="datum" class="form-control" placeholder="Datum" aria-label="Datum">
+  </div>
+    <div class="col">
+    <input type="number" name="dauer" class="form-control" step="any" placeholder="Dauer" aria-label="Dauer">
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <input type="number" name="distanz" class="form-control" step="any" placeholder="Distanz" aria-label="Distanz">
+  </div>
+    <div class="col">
+    <input type="number" name="hoehenmeter" class="form-control" step="any" placeholder="Höhenmeter" aria-label="Höhenmeter">
+  </div>
+</div>
+<select class="form-select" name="sportart" aria-label="Sportart">
+  <option selected>Sportart auswählen</option>
+  <option value="Bike">Bike</option>
+  <option value="Skitour">Skitour</option>
+  <option value="Wanderung">Wanderung</option>
+</select>
+  <button type="submit">Senden</button>
+</form>
 
 {% include "footer.html" %}

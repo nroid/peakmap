@@ -28,10 +28,11 @@ def start():
     summedistanz = berechnung.summedistanz()
     summehoehenmeter = berechnung.summehoehenmeter()
     div = berechnung.viz()
+    sport = berechnung.sport()
     for key, value in gipfelbuch.items():
         titel = value.keys()
         inhalt = gipfelbuch.items()
-        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter, viz_div=div)
+        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter, viz_div=div, sport=sport)
 
 """
 Daten werden aus gipfel.json geladen
@@ -50,10 +51,11 @@ def auswertung():
     summedistanz = berechnung.summedistanz()
     summehoehenmeter = berechnung.summehoehenmeter()
     div = berechnung.viz()
+    sport = berechnung.sport()
     for key, value in gipfelbuch.items():
         titel = value.keys()
         inhalt = gipfelbuch.items()
-        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter, viz_div=div)
+        return render_template("auswertung.html", titel=titel, inhalt=inhalt, summedauer=summedauer, summedistanz=summedistanz, summehoehenmeter=summehoehenmeter, viz_div=div, sport=sport)
 
 """
 Mit Methods POST, werden Daten aus Eingabeformular in Variablen geschrieben.
@@ -80,11 +82,18 @@ def eingabe():
     return render_template("eingabe.html")
 
 """
-Bearbeitung ist noch nicht fertiggestellt!
+Bearbeitung ist funktioniert nicht...
+Im Dropdown sollte eine Tour ausgewählt werden können. Die Attribute dieser Tour sollten in die Inputboxen abgefüllt werden und somit bearbeitet werden können.
 """
-@app.route("/bearbeitung")
+@app.route("/bearbeitung", methods=["GET", "POST"])
 def bearbeitung():
-    return render_template("bearbeitung.html")
+    gipfelbuch = daten.gipfel_laden()
+    inhalt = gipfelbuch.items()
+    return render_template("bearbeitung.html", inhalt=inhalt)
+
+    if request.method == "POST":
+        tour = request.form.get('tour')
+        return render_template("bearbeitung.html", tour=tour)
 
 
 if __name__ == "__main__":

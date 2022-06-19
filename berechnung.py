@@ -99,6 +99,29 @@ def anzahlkanton():
 
     return kantone, values
 
+"""
+Funktion berechnet aus den Daten von gipfel.json die Anzahl Touren pro Sportart und gibt die Werte für
+die Darstellung im Balkendiagramm zurück
+"""
+def anzahlsportart():
+    gipfelbuch = daten.gipfel_laden()
+    bike = 0
+    skitour = 0
+    wanderung = 0
+
+    for key, value in gipfelbuch.items():
+        if value["Sportart"] == "Bike":
+            bike += 1
+        elif value["Sportart"] == "Skitour":
+            skitour += 1
+        elif value["Sportart"] == "Wanderung":
+            wanderung += 1
+
+    sportart = ['Bike', 'Skitour', 'Wanderung']
+    anzahl = [bike, skitour, wanderung]
+
+    return sportart, anzahl
+
 # Berechnung der Summe der Dauer aller gipfel.json Einträge
 def summedauer():
     gipfelbuch = daten.gipfel_laden()
@@ -127,5 +150,12 @@ def summehoehenmeter():
 def viz():
     kantone, values = anzahlkanton()
     fig = px.bar(x=kantone, y=values)
+    div = plot(fig, output_type="div")
+    return div
+
+# Erstellung des Balkendiagramms der Anzahl Routen pro Sportart
+def sport():
+    sportart, anzahl = anzahlsportart()
+    fig = px.bar(x=sportart, y=anzahl)
     div = plot(fig, output_type="div")
     return div

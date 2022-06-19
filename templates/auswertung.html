@@ -30,6 +30,7 @@
   </tbody>
 </table>
 
+<!--Dropdown-Menüs für die Filterung der Tourdaten, funktioniert nicht -->
 <!--<form method="POST">
 <select class="form-select" name="kanton" aria-label="Kanton">
   <option selected>Kanton auswählen</option>
@@ -71,5 +72,7 @@
 
 <!-- Darstellung des Balkendiagramms Anzahl Touren in Kanton -->
 {{ viz_div|safe }}
+<!-- Darstellung des Balkendiagramms Anzahl Touren in Sportart -->
+{{ sport|safe }}
 
 {% include "footer.html" %}
