@@ -15,7 +15,7 @@
 - Auf der Eingabeseite können Daten erfasst werden, welche dann in der json-Datei hinzugefügt werden.
 
 **Architektur**
-`![Peak Map](../static/PeakMap_Ablaufdiagramm.png)`
+![Peak Map](../static/PeakMap_Ablaufdiagramm.png)
 
 **Ungelöste/unbearbeitete Probleme**
  - Die Bearbeitung der bereits erfassten Daten ist noch nicht umgesetzt.
